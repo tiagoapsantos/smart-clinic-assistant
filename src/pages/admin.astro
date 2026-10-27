@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import AppointmentStats from '../components/AppointmentStats.astro';
+---
+<BaseLayout title="Painel de gestão" description="Painel local de demonstração para consultar e gerir pedidos de marcação fictícios.">
+  <div class="container page-shell admin-shell">
+    <section class="page-intro admin-intro">
+      <p class="eyebrow">Área administrativa · Demonstração</p>
+      <h1>Pedidos de marcação</h1>
+      <p class="lead">Consulte os pedidos fictícios e actualize o seu estado neste navegador.</p>
+    </section>
+    <aside class="demo-notice compact-notice">
+      <span class="notice-mark" aria-hidden="true">i</span>
+      <p><strong>Dados de demonstração.</strong> Apenas cenários fictícios predefinidos. Não se destina a marcações reais. Sem autenticação ou backend. O armazenamento local não é seguro; não utilize dados de pacientes.</p>
+    </aside>
+    <AppointmentStats />
+    <section class="panel list-panel" aria-labelledby="list-heading">
+      <div class="list-heading-row">
+        <div><p class="eyebrow">Agenda local</p><h2 id="list-heading">Marcações</h2></div>
+        <button class="button button-quiet" type="button" id="reset-demo">Repor dados de demonstração</button>
+      </div>
+      <div class="filters">
+        <label class="field search-field" for="search-appointments">Pesquisar
+          <input id="search-appointments" type="search" placeholder="Nome, email, telefone ou serviço" />
+        </label>
+        <label class="field status-filter" for="filter-status">Estado
+          <select id="filter-status">
+            <option value="all">Todos os estados</option>
+            <option value="pending">Pendente</option>
+            <option value="confirmed">Confirmada</option>
+            <option value="cancelled">Cancelada</option>
+          </select>
+        </label>
+      </div>
+      <p id="admin-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+      <div id="appointment-list" class="appointment-list" aria-live="polite"></div>
+    </section>
+  </div>
+  <dialog id="appointment-dialog" class="detail-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-heading"><div><p class="eyebrow">Detalhes do pedido</p><h2 id="dialog-title">Marcação</h2></div><button class="icon-button" id="close-dialog" type="button" aria-label="Fechar detalhes">×</button></div>
+    <dl id="appointment-details" class="detail-list"></dl>
+  </dialog>
+  <script>import '../scripts/admin.ts';</script>
+</BaseLayout>

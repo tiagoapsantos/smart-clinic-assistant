@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import AppointmentForm from '../components/AppointmentForm.astro';
+---
+<BaseLayout title="Pedir marcação" description="Demonstração local e fictícia de pedidos de marcação. Não introduza dados reais ou informação de saúde.">
+  <div class="container page-shell">
+    <section class="page-intro">
+      <p class="eyebrow">Gestão simples de marcações</p>
+      <h1>Um pedido claro.<br /><span>Um processo organizado.</span></h1>
+      <p class="lead">Uma demonstração local para explorar um fluxo de pedidos de marcação e gestão administrativa.</p>
+    </section>
+    <aside class="demo-notice" aria-label="Aviso importante">
+      <span class="notice-mark" aria-hidden="true">i</span>
+      <p><strong>Demonstração fictícia.</strong> Não está ligada a uma clínica nem se destina a marcações reais. Só permite pessoas e mensagens fictícias predefinidas. Não introduza dados pessoais reais nem informação de saúde. Os dados ficam neste navegador e o <code>localStorage</code> não é armazenamento seguro.</p>
+    </aside>
+    <div class="booking-layout">
+      <AppointmentForm />
+      <aside class="side-note">
+        <p class="eyebrow">Como funciona</p>
+        <h2>Uma demonstração, sem envio de dados.</h2>
+        <p>Os pedidos são guardados apenas neste navegador. Não são enviados para uma clínica nem partilhados com outras pessoas.</p>
+        <a class="text-link" href={`${import.meta.env.BASE_URL}admin/`}>Abrir painel de gestão <span aria-hidden="true">→</span></a>
+        <div class="side-divider"></div>
+        <p class="small-note">Os nomes e contactos apresentados no painel são exemplos inventados para demonstração.</p>
+      </aside>
+    </div>
+  </div>
+  <script>import '../scripts/booking.ts';</script>
+</BaseLayout>

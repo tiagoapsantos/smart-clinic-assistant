@@ -1,0 +1,44 @@
+---
+import { demoAppointments } from '../data/demo-appointments';
+---
+<section class="panel form-panel" aria-labelledby="form-title">
+  <div class="panel-heading">
+    <p class="eyebrow">Novo pedido</p>
+    <h2 id="form-title">Simular um pedido</h2>
+    <p>Escolha uma pessoa fictícia e a disponibilidade de exemplo. Não é uma marcação real.</p>
+  </div>
+  <form id="appointment-form" novalidate autocomplete="off">
+    <label class="field" for="demo-person">Pessoa fictícia<select id="demo-person" name="scenarioId">{demoAppointments.map(person => <option value={person.id}>{person.fullName}</option>)}</select></label>
+    <div class="field-grid">
+      <label class="field field-wide" for="full-name"><span class="field-title">Nome completo de exemplo</span>
+        <input id="full-name" value={demoAppointments[0].fullName} readonly aria-describedby="demo-only-help" />
+      </label>
+      <label class="field" for="email"><span class="field-title">Email de exemplo</span>
+        <input id="email" type="email" value={demoAppointments[0].email} readonly />
+      </label>
+      <label class="field" for="phone"><span class="field-title">Telefone de exemplo</span>
+        <input id="phone" type="tel" value={demoAppointments[0].phone} readonly />
+      </label>
+      <label class="field field-wide" for="service"><span class="field-title">Serviço pretendido <span aria-hidden="true">*</span></span>
+        <select id="service" name="service" required>
+          <option value="" disabled selected>Seleccione um serviço</option>
+          <option>Consulta geral</option>
+          <option>Consulta de acompanhamento</option>
+          <option>Outro serviço</option>
+        </select>
+      </label>
+      <label class="field" for="preferred-date"><span class="field-title">Data preferida <span aria-hidden="true">*</span></span>
+        <input id="preferred-date" name="preferredDate" type="date" required />
+      </label>
+      <label class="field" for="preferred-time"><span class="field-title">Hora preferida <span aria-hidden="true">*</span></span>
+        <input id="preferred-time" name="preferredTime" type="time" required />
+      </label>
+      <label class="field field-wide" for="message"><span class="field-title">Mensagem administrativa de exemplo</span>
+        <textarea id="message" rows="3" readonly>{demoAppointments[0].message}</textarea>
+      </label>
+    </div>
+    <p id="demo-only-help">Contactos e mensagens são exemplos fixos, não editáveis. Não introduza informação pessoal ou clínica. Apenas a simulação é guardada neste navegador.</p>
+    <button class="button" type="submit">Guardar pedido fictício</button>
+    <p id="form-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+  </form>
+</section>
